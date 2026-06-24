@@ -149,6 +149,39 @@ export const services: Service[] = [
   },
 ];
 
+/** Zašto Lumikon sekcija početne strane (PRD §6.4). */
+export const whyLumikonSection = {
+  eyebrow: "Zašto Lumikon",
+  title: "Kvalitet, posvećenost i jasan proces — bez kompromisa.",
+  subtitle:
+    "Ne trkamo se u ceni. Pravimo sajtove koji izgledaju i rade premium, sa vama od prve poruke do lansiranja.",
+  pillars: [
+    {
+      title: "Kvalitet dizajna",
+      description:
+        "Premium izrada je naš diferencijator. Svaki detalj — tipografija, boje, ritam — radi za vaš biznis i prvi utisak.",
+    },
+    {
+      title: "Posvećenost projektu",
+      description:
+        "Vaš sajt nije broj u redu. Radimo revizije dok ne budete sigurni da predstavlja vas onako kako zaslužujete.",
+    },
+    {
+      title: "Jasan proces",
+      description:
+        "Četiri koraka, bez iznenađenja. Uvek znate gde ste, šta sledi i šta možete da očekujete od nas.",
+    },
+  ],
+} as const;
+
+/** Kako radimo (proces) sekcija početne strane (PRD §6.5). */
+export const processSection = {
+  eyebrow: "Kako radimo",
+  title: "Od razgovora do lansiranja — četiri jasna koraka.",
+  subtitle:
+    "Bez nejasnih rokova i skrivenih koraka. Proces je jednostavan i transparentan.",
+} as const;
+
 export type ProcessStep = {
   title: string;
   description: string;
@@ -172,3 +205,45 @@ export const processSteps: ProcessStep[] = [
     description: "Objavljujemo sajt i ostajemo uz vas uz revizije do zadovoljstva.",
   },
 ];
+
+/** Poverenje sekcija početne strane (PRD §6.6). */
+export const trustSection = {
+  eyebrow: "Poverenje",
+  statement:
+    "Kvalitet ovog sajta je naš prvi dokaz — svaki detalj koji vidite ovde, donosimo i u vaš projekat.",
+  supporting:
+    "Još nemamo javne testimonijale, ali imamo jasan standard: ispoliran dizajn, brzina i pažnja prema svakom pikselu.",
+} as const;
+
+export type Testimonial = {
+  quote: string;
+  author: string;
+  role: string;
+};
+
+/** Prazno dok ne postoji sadržaj — testimonijali se ne prikazuju (PRD §6.6). */
+export const testimonials: Testimonial[] = [];
+
+/** Kontakt / CTA sekcija početne strane (PRD §6.7, §7). */
+export const contactSection = {
+  eyebrow: "Kontakt",
+  title: "Spremni za moderan sajt? Javite nam se.",
+  subtitle:
+    "Opišite projekat u par rečenica — odgovaramo brzo sa jasnim sledećim koracima.",
+  reassurance: "Besplatne revizije do zadovoljstva — bez skrivenih uslova.",
+  form: {
+    nameLabel: "Ime",
+    namePlaceholder: "Vaše ime",
+    emailLabel: "Email",
+    emailPlaceholder: "vi@primer.rs",
+    messageLabel: "Poruka",
+    messagePlaceholder: "Kratko opišite projekat ili pitanje…",
+    submitLabel: "Pošalji upit",
+    submittingLabel: "Slanje…",
+    successMessage: "Hvala! Primili smo vaš upit i javićemo vam se uskoro.",
+    errorMessage: "Došlo je do greške. Pokušajte ponovo ili pišite direktno na email.",
+    validationMessage: "Proverite označena polja i pokušajte ponovo.",
+    unavailableMessage:
+      "Forma trenutno nije aktivna. Pišite nam direktno — odgovaramo brzo.",
+  },
+} as const;

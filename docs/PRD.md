@@ -32,10 +32,10 @@ Poslednje ažuriranje: **24. jun 2026.**
 | 1. Hero | ✅ | `components/sections/hero.tsx` |
 | 2. Problem / Rešenje | ✅ | `components/sections/problem-solution.tsx` |
 | 3. Usluge | ✅ | `components/sections/services.tsx` |
-| 4. Zašto Lumikon | ⬜ | — |
-| 5. Kako radimo (proces) | ⬜ | — |
-| 6. Poverenje | ⬜ | — |
-| 7. Kontakt / CTA | ⬜ | — |
+| 4. Zašto Lumikon | ✅ | `components/sections/why-lumikon.tsx` |
+| 5. Kako radimo (proces) | ✅ | `components/sections/process.tsx` |
+| 6. Poverenje | ✅ | `components/sections/trust.tsx` |
+| 7. Kontakt / CTA | ✅ | `components/sections/contact-cta.tsx`, `app/actions/contact.ts` |
 
 **Hero (urađeno):** value-prop naslov, podnaslov, primarni CTA „Kontaktiraj nas", sekundarni „Pogledaj usluge", lista prednosti, suptilni amber gradijenti, CSS mockup sajta (PRD §8).
 
@@ -43,7 +43,7 @@ Poslednje ažuriranje: **24. jun 2026.**
 
 | Stranica | Status |
 | --- | --- |
-| Početna (Home) | 🟡 delimično (Hero + Problem/Rešenje + Usluge) |
+| Početna (Home) | ✅ | Sve sekcije §6.1–§6.7 |
 | Usluge | ⬜ |
 | O nama | ⬜ |
 | Kontakt | ⬜ |
@@ -51,9 +51,8 @@ Poslednje ažuriranje: **24. jun 2026.**
 
 ### Preostalo za MVP
 
-- Preostale sekcije početne (§6.2–§6.7)
 - Stranice Usluge, O nama, Kontakt
-- Kontakt forma + email notifikacija (§7)
+- Kontakt forma + email notifikacija (§7) — forma ✅; Resend env za produkciju
 - SEO: `sitemap.xml`, `robots.txt`, structured data (§9)
 - Framer Motion animacije (§8, §10) — opciono, suptilno
 - Blog folder struktura (§5, §11)
@@ -205,7 +204,7 @@ Redosled (problem → rešenje pristup):
 ```text
 app/
   layout.tsx              ✅
-  page.tsx                ✅ Početna (Hero, Problem/Rešenje, Usluge)
+  page.tsx                ✅ Početna (sve sekcije §6)
   globals.css             ✅ dizajn tokeni
   usluge/page.tsx         ⬜
   o-nama/page.tsx         ⬜
@@ -213,7 +212,7 @@ app/
   (blog)/                 ⬜ struktura spremna, prazno
 components/
   ui/                     ✅ button.tsx (shadcn)
-  sections/               🟡 hero.tsx, problem-solution.tsx, services.tsx
+  sections/               ✅ hero, problem-solution, services, why-lumikon, process, trust, contact-cta
   layout/                 ✅ navbar.tsx, footer.tsx
 lib/
   utils.ts                ✅
