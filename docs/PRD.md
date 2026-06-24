@@ -31,7 +31,7 @@ Poslednje ažuriranje: **24. jun 2026.**
 | --- | --- | --- |
 | 1. Hero | ✅ | `components/sections/hero.tsx` |
 | 2. Problem / Rešenje | ✅ | `components/sections/problem-solution.tsx` |
-| 3. Usluge | ⬜ | — |
+| 3. Usluge | ✅ | `components/sections/services.tsx` |
 | 4. Zašto Lumikon | ⬜ | — |
 | 5. Kako radimo (proces) | ⬜ | — |
 | 6. Poverenje | ⬜ | — |
@@ -43,7 +43,7 @@ Poslednje ažuriranje: **24. jun 2026.**
 
 | Stranica | Status |
 | --- | --- |
-| Početna (Home) | 🟡 delimično (Hero + Problem/Rešenje) |
+| Početna (Home) | 🟡 delimično (Hero + Problem/Rešenje + Usluge) |
 | Usluge | ⬜ |
 | O nama | ⬜ |
 | Kontakt | ⬜ |
@@ -205,7 +205,7 @@ Redosled (problem → rešenje pristup):
 ```text
 app/
   layout.tsx              ✅
-  page.tsx                ✅ Početna (Hero, Problem/Rešenje)
+  page.tsx                ✅ Početna (Hero, Problem/Rešenje, Usluge)
   globals.css             ✅ dizajn tokeni
   usluge/page.tsx         ⬜
   o-nama/page.tsx         ⬜
@@ -213,7 +213,7 @@ app/
   (blog)/                 ⬜ struktura spremna, prazno
 components/
   ui/                     ✅ button.tsx (shadcn)
-  sections/               🟡 hero.tsx, problem-solution.tsx
+  sections/               🟡 hero.tsx, problem-solution.tsx, services.tsx
   layout/                 ✅ navbar.tsx, footer.tsx
 lib/
   utils.ts                ✅

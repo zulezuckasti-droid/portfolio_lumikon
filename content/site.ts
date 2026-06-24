@@ -101,6 +101,24 @@ export const hero = {
   ],
 } as const;
 
+/** Usluge sekcija početne strane (PRD §6.3, §4). */
+export const servicesSection = {
+  eyebrow: "Usluge",
+  title: "Sve što vam treba za snažno prisustvo onlajn.",
+  subtitle:
+    "Izrada sajtova je naša srž — ostalo radimo po potrebi projekta, bez nepotrebnih paketa.",
+  flagshipLabel: "Glavna usluga",
+  onRequestLabel: "Detalji na upit",
+  extras: {
+    description:
+      "Vizuali, copywriting i automatizacija — ugrađeni u projekat kada su potrebni, bez dodatne komplikacije.",
+  },
+  cta: {
+    label: "Zatraži ponudu",
+    href: "/kontakt",
+  },
+} as const;
+
 export type Service = {
   title: string;
   description: string;
@@ -115,7 +133,7 @@ export const services: Service[] = [
     flagship: true,
   },
   {
-    title: "Redizajn postojećih sajtova",
+    title: "Redizajn / unapređenje postojećih sajtova",
     description:
       "Osvežavamo i unapređujemo zastarele sajtove u savremeno izdanje koje radi za vaš biznis.",
   },
