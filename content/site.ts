@@ -39,6 +39,55 @@ export const secondaryCta = {
   href: "/usluge",
 } as const;
 
+/** Problem / Rešenje sekcija početne strane (PRD §6.2). */
+export const problemSolution = {
+  eyebrow: "Problem i rešenje",
+  title: "Zastareo ili nepostojeći sajt vas košta klijenata.",
+  subtitle: "Većina malih biznisa gubi prilike pre nego što uopšte stigne da se predstavi. Mi to menjamo.",
+  problem: {
+    label: "Prepoznajete se?",
+    items: [
+      {
+        title: "Nemate sajt ili je zastareo godinama",
+        description: "Posetilac ne može da proceni da li ste ozbiljan biznis.",
+      },
+      {
+        title: "Ne izgledate profesionalno onlajn",
+        description: "Prvi utisak se formira u sekundi — a vi ga gubite.",
+      },
+      {
+        title: "Gubite upite pre nego što vas pronađu",
+        description: "Bez jasnog CTA-a i poverenja, posetilac odlazi dalje.",
+      },
+      {
+        title: "Sajt ne radi kako treba na telefonu",
+        description: "Većina klijenata dolazi sa mobilnog — a vi ih ne hvatate.",
+      },
+    ],
+  },
+  solution: {
+    label: "Kako Lumikon rešava",
+    items: [
+      {
+        title: "Moderan, premium dizajn",
+        description: "Sajt koji u prvih pet sekundi kaže: ovo je tačno ono što mi treba.",
+      },
+      {
+        title: "Brzo, responsivno i pouzdano",
+        description: "Besprekorno iskustvo na telefonu, tabletu i desktopu.",
+      },
+      {
+        title: "Jasna putanja ka upitu",
+        description: "Struktura i CTA koji vode posetioce ka kontaktu.",
+      },
+      {
+        title: "Revizije do zadovoljstva",
+        description: "Radimo dok ne budete sigurni da sajt predstavlja vaš biznis.",
+      },
+    ],
+  },
+} as const;
+
 /** Hero sekcija početne strane (PRD §6.1, §8). */
 export const hero = {
   eyebrow: "Digitalna agencija · Srbija",

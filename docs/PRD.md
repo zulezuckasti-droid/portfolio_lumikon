@@ -1,9 +1,62 @@
 # PRD — Lumikon (Veb sajt agencije)
 
-**Verzija:** 1.0
+**Verzija:** 1.1
 **Datum:** Jun 2026
 **Jezik sajta:** Srpski
-**Status:** Definisano pre implementacije
+**Status:** U implementaciji (MVP)
+
+---
+
+## 0. Status implementacije
+
+Poslednje ažuriranje: **24. jun 2026.**
+
+### Temelj projekta — urađeno
+
+| Stavka | Status | Napomena |
+| --- | --- | --- |
+| Next.js (App Router) + TypeScript + Tailwind CSS | ✅ | Next.js 16, Tailwind v4 |
+| shadcn/ui inicijalizacija | ✅ | `components.json`, preset new-york |
+| Dizajn tokeni (PRD §8) | ✅ | Amber/zlatna, svetla tema — `app/globals.css` |
+| Centralizovani tekstovi | ✅ | `content/site.ts` (srpski) |
+| Root layout | ✅ | `app/layout.tsx` — Navbar, Footer, metadata, Open Graph |
+| Navbar | ✅ | `components/layout/navbar.tsx` |
+| Footer | ✅ | `components/layout/footer.tsx` |
+| shadcn Button | ✅ | `components/ui/button.tsx`; CTA u Navbar + Hero |
+| Početna stranica (osnova) | ✅ | `app/page.tsx` |
+
+### Sekcije početne (PRD §6)
+
+| Sekcija | Status | Fajl |
+| --- | --- | --- |
+| 1. Hero | ✅ | `components/sections/hero.tsx` |
+| 2. Problem / Rešenje | ✅ | `components/sections/problem-solution.tsx` |
+| 3. Usluge | ⬜ | — |
+| 4. Zašto Lumikon | ⬜ | — |
+| 5. Kako radimo (proces) | ⬜ | — |
+| 6. Poverenje | ⬜ | — |
+| 7. Kontakt / CTA | ⬜ | — |
+
+**Hero (urađeno):** value-prop naslov, podnaslov, primarni CTA „Kontaktiraj nas", sekundarni „Pogledaj usluge", lista prednosti, suptilni amber gradijenti, CSS mockup sajta (PRD §8).
+
+### Stranice (PRD §5)
+
+| Stranica | Status |
+| --- | --- |
+| Početna (Home) | 🟡 delimično (Hero + Problem/Rešenje) |
+| Usluge | ⬜ |
+| O nama | ⬜ |
+| Kontakt | ⬜ |
+| Blog (struktura) | ⬜ |
+
+### Preostalo za MVP
+
+- Preostale sekcije početne (§6.2–§6.7)
+- Stranice Usluge, O nama, Kontakt
+- Kontakt forma + email notifikacija (§7)
+- SEO: `sitemap.xml`, `robots.txt`, structured data (§9)
+- Framer Motion animacije (§8, §10) — opciono, suptilno
+- Blog folder struktura (§5, §11)
 
 ---
 
@@ -74,7 +127,7 @@ MVP — 4 stranice:
 
 Redosled (problem → rešenje pristup):
 
-1. **Hero** — snažan value-prop naslov + primarni CTA („Kontaktiraj nas")
+1. **Hero** — snažan value-prop naslov + primarni CTA („Kontaktiraj nas") ✅ *implementirano*
 2. **Problem / Rešenje** — bol klijenta (zastareo/nepostojeći sajt) → kako Lumikon rešava
 3. **Usluge** — kompaktan pregled (flagship istaknut)
 4. **Zašto Lumikon** — kvalitet dizajna, posvećenost, jasan proces
@@ -151,18 +204,21 @@ Redosled (problem → rešenje pristup):
 
 ```text
 app/
-  layout.tsx
-  page.tsx                # Početna
-  usluge/page.tsx
-  o-nama/page.tsx
-  kontakt/page.tsx
-  (blog)/                 # struktura spremna, prazno
+  layout.tsx              ✅
+  page.tsx                ✅ Početna (Hero, Problem/Rešenje)
+  globals.css             ✅ dizajn tokeni
+  usluge/page.tsx         ⬜
+  o-nama/page.tsx         ⬜
+  kontakt/page.tsx        ⬜
+  (blog)/                 ⬜ struktura spremna, prazno
 components/
-  ui/                     # shadcn/ui
-  sections/               # Hero, Usluge, Proces, ...
-  layout/                 # Navbar, Footer
+  ui/                     ✅ button.tsx (shadcn)
+  sections/               🟡 hero.tsx, problem-solution.tsx
+  layout/                 ✅ navbar.tsx, footer.tsx
 lib/
-content/                  # tekstovi (srpski), lako izmenjivi
+  utils.ts                ✅
+content/
+  site.ts                 ✅ tekstovi (srpski)
 public/
 docs/
   PRD.md
