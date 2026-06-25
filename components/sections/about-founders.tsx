@@ -1,3 +1,5 @@
+import { FadeIn } from "@/components/motion/fade-in";
+import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { aboutPage } from "@/content/site";
 
 /**
@@ -17,7 +19,7 @@ export function AboutFounders() {
       </div>
 
       <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-6 sm:py-28 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
+        <FadeIn className="mx-auto max-w-2xl text-center">
           <div className="flex items-center justify-center gap-3">
             <span aria-hidden className="h-px w-5 rounded-full bg-primary/55" />
             <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/60">
@@ -36,12 +38,12 @@ export function AboutFounders() {
           <p className="mt-4 text-pretty text-base leading-7 text-muted-foreground">
             {founders.subtitle}
           </p>
-        </div>
+        </FadeIn>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:mt-14">
+        <StaggerGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:mt-14">
           {founders.roles.map((role) => (
+            <StaggerItem key={role.label}>
             <article
-              key={role.label}
               className="relative rounded-2xl border border-border bg-card p-6 sm:p-7"
             >
               <div className="flex items-center gap-3">
@@ -59,13 +61,16 @@ export function AboutFounders() {
                 {role.description}
               </p>
             </article>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
 
+        <FadeIn delay={0.05}>
         <p className="mx-auto mt-10 max-w-lg text-center text-sm leading-6 text-muted-foreground/75">
           <span aria-hidden className="mr-3 inline-block h-px w-5 align-middle bg-primary/45" />
           {founders.note}
         </p>
+        </FadeIn>
       </div>
     </section>
   );

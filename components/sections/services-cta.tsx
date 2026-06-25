@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { FadeIn } from "@/components/motion/fade-in";
 import { servicesPage } from "@/content/site";
 
 /**
@@ -19,7 +20,7 @@ export function ServicesCta() {
       </div>
 
       <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-6 sm:py-28 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
+        <FadeIn className="mx-auto max-w-2xl text-center">
           <div className="flex items-center justify-center gap-3">
             <span aria-hidden className="h-px w-5 rounded-full bg-primary/55" />
             <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/60">
@@ -52,7 +53,7 @@ export function ServicesCta() {
               <p className="max-w-md text-sm text-muted-foreground/80">{cta.reassurance}</p>
             </div>
           </div>
-        </div>
+        </FadeIn>
       </div>
     </section>
   );

@@ -1,3 +1,5 @@
+import { FadeIn } from "@/components/motion/fade-in";
+import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { processSection, processSteps } from "@/content/site";
 
 /**
@@ -18,8 +20,7 @@ export function Process() {
       </div>
 
       <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-6 sm:py-28 lg:px-8">
-        {/* Header */}
-        <div className="flex flex-col items-center text-center">
+        <FadeIn className="flex flex-col items-center text-center">
           <div className="flex items-center gap-3">
             <span aria-hidden className="h-px w-5 rounded-full bg-primary/50" />
             <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/40">
@@ -38,9 +39,9 @@ export function Process() {
           <p className="mt-4 max-w-xl text-pretty text-base leading-7 text-white/50 sm:text-lg">
             {processSection.subtitle}
           </p>
-        </div>
+        </FadeIn>
 
-        <ol className="relative mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+        <StaggerGroup as="ol" className="relative mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
           {/* Horizontalna linija konektor (desktop) */}
           <div
             aria-hidden
@@ -48,7 +49,8 @@ export function Process() {
           />
 
           {processSteps.map((step, index) => (
-            <li key={step.title} className="relative flex flex-col">
+            <StaggerItem as="li" key={step.title}>
+            <div className="relative flex flex-col">
               {/* Broj — mali, čist, amber */}
               <div className="flex items-center gap-3 lg:flex-col lg:items-start lg:gap-0">
                 <div className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04]">
@@ -66,9 +68,10 @@ export function Process() {
                   </p>
                 </div>
               </div>
-            </li>
+            </div>
+            </StaggerItem>
           ))}
-        </ol>
+        </StaggerGroup>
       </div>
     </section>
   );

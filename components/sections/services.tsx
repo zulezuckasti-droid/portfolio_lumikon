@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { FadeIn } from "@/components/motion/fade-in";
+import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { primaryCta, services, servicesSection } from "@/content/site";
 
 /**
@@ -23,8 +25,7 @@ export function Services() {
       </div>
 
       <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-6 sm:py-28 lg:px-8">
-        {/* Header — centriran */}
-        <div className="flex flex-col items-center text-center">
+        <FadeIn className="flex flex-col items-center text-center">
           <div className="flex items-center gap-3">
             <span aria-hidden className="h-px w-5 rounded-full bg-primary/55" />
             <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/60">
@@ -43,11 +44,11 @@ export function Services() {
           <p className="mt-4 max-w-xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg">
             {servicesSection.subtitle}
           </p>
-        </div>
+        </FadeIn>
 
         <div className="mt-14 space-y-5">
-          {/* Flagship kartica — tanak amber levi stripe umesto gradijenta */}
           {flagship ? (
+            <FadeIn>
             <article className="relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8">
               <div
                 aria-hidden
@@ -84,13 +85,13 @@ export function Services() {
                 </div>
               </div>
             </article>
+            </FadeIn>
           ) : null}
 
-          {/* Kompaktne usluge */}
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <StaggerGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {compact.map((service) => (
+              <StaggerItem key={service.title}>
               <article
-                key={service.title}
                 className="flex flex-col rounded-2xl border border-border bg-card p-6 transition-colors duration-200 hover:border-border/80 hover:bg-secondary/20"
               >
                 <span aria-hidden className="h-px w-6 rounded-full bg-primary/50" />
@@ -107,15 +108,16 @@ export function Services() {
                   {servicesSection.onRequestLabel}
                 </p>
               </article>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         </div>
 
+        <FadeIn delay={0.05}>
         <p className="mx-auto mt-9 max-w-2xl text-center text-sm leading-6 text-muted-foreground/70">
           {servicesSection.extras.description}
         </p>
 
-        {/* Footer CTA — text link sa strelicom */}
         <div className="mt-8 flex justify-center">
           <Link
             href={primaryCta.href}
@@ -125,6 +127,7 @@ export function Services() {
             <ArrowRightIcon className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
           </Link>
         </div>
+        </FadeIn>
       </div>
     </section>
   );

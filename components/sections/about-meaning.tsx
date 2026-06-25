@@ -1,3 +1,5 @@
+import { FadeIn } from "@/components/motion/fade-in";
+import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { aboutPage } from "@/content/site";
 
 /**
@@ -18,6 +20,7 @@ export function AboutMeaning() {
 
       <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-6 sm:py-28 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16 lg:items-start">
+          <FadeIn>
           <div>
             <div className="flex items-center gap-3">
               <span aria-hidden className="h-px w-7 rounded-full bg-primary/65" />
@@ -37,11 +40,12 @@ export function AboutMeaning() {
               {meaning.lead}
             </p>
           </div>
+          </FadeIn>
 
-          <div className="space-y-4">
+          <StaggerGroup className="space-y-4">
             {meaning.parts.map((part) => (
+              <StaggerItem key={part.fragment}>
               <article
-                key={part.fragment}
                 className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-colors duration-200 hover:border-border/80 hover:bg-secondary/20 sm:p-7"
               >
                 <div className="flex items-start gap-5">
@@ -56,8 +60,9 @@ export function AboutMeaning() {
                   </div>
                 </div>
               </article>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         </div>
       </div>
     </section>

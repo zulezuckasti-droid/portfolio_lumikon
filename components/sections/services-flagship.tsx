@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { FadeIn } from "@/components/motion/fade-in";
 import { servicesPage } from "@/content/site";
 
 /**
@@ -21,7 +22,7 @@ export function ServicesFlagship() {
 
       <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-6 sm:py-28 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16 lg:items-start">
-          {/* Leva kolona — narativ */}
+          <FadeIn>
           <div>
             <div className="flex items-center gap-2.5">
               <span aria-hidden className="h-px w-4 rounded-full bg-primary/65" />
@@ -55,8 +56,9 @@ export function ServicesFlagship() {
               <p className="text-sm text-muted-foreground/70">{flagship.note}</p>
             </div>
           </div>
+          </FadeIn>
 
-          {/* Desna kolona — deliverables */}
+          <FadeIn direction="right" delay={0.08}>
           <div className="relative rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8">
             <div
               aria-hidden
@@ -87,6 +89,7 @@ export function ServicesFlagship() {
               </ul>
             </div>
           </div>
+          </FadeIn>
         </div>
       </div>
     </section>

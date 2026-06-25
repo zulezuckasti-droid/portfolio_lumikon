@@ -1,3 +1,5 @@
+import { FadeIn } from "@/components/motion/fade-in";
+import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { whyLumikonSection } from "@/content/site";
 
 /**
@@ -19,8 +21,7 @@ export function WhyLumikon() {
       </div>
 
       <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-6 sm:py-28 lg:px-8">
-        {/* Header */}
-        <div className="flex flex-col items-center text-center">
+        <FadeIn className="flex flex-col items-center text-center">
           <div className="flex items-center gap-3">
             <span aria-hidden className="h-px w-5 rounded-full bg-primary/55" />
             <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/60">
@@ -39,15 +40,15 @@ export function WhyLumikon() {
           <p className="mt-4 max-w-xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg">
             {whyLumikonSection.subtitle}
           </p>
-        </div>
+        </FadeIn>
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <StaggerGroup className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {whyLumikonSection.pillars.map((pillar, index) => {
             const Icon = icons[index] ?? DesignIcon;
 
             return (
+              <StaggerItem key={pillar.title}>
               <article
-                key={pillar.title}
                 className="flex flex-col rounded-2xl border border-border bg-card p-6 sm:p-7"
               >
                 {/* Ikona bez teškog amber kruga — samo line + ikona */}
@@ -64,9 +65,10 @@ export function WhyLumikon() {
                   {pillar.description}
                 </p>
               </article>
+              </StaggerItem>
             );
           })}
-        </div>
+        </StaggerGroup>
       </div>
     </section>
   );

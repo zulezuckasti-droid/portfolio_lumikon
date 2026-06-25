@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
+import { SiteJsonLd } from "@/components/seo/json-ld";
 import { site } from "@/content/site";
 import "./globals.css";
 
@@ -63,6 +64,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        <SiteJsonLd />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

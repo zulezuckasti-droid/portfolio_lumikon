@@ -29,6 +29,34 @@ export const navLinks: NavLink[] = [
   { label: "Kontakt", href: "/kontakt" },
 ];
 
+/** Javne rute za sitemap i structured data (PRD §9). */
+export const publicRoutes = [
+  {
+    path: "/",
+    label: "Početna",
+    changeFrequency: "weekly" as const,
+    priority: 1,
+  },
+  {
+    path: "/usluge",
+    label: "Usluge",
+    changeFrequency: "monthly" as const,
+    priority: 0.9,
+  },
+  {
+    path: "/o-nama",
+    label: "O nama",
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  },
+  {
+    path: "/kontakt",
+    label: "Kontakt",
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  },
+] as const;
+
 export const primaryCta = {
   label: "Kontaktiraj nas",
   href: "/kontakt",

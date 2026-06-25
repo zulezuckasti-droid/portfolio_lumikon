@@ -1,3 +1,5 @@
+import { FadeIn } from "@/components/motion/fade-in";
+import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { problemSolution } from "@/content/site";
 
 /**
@@ -13,8 +15,7 @@ export function ProblemSolution() {
       </div>
 
       <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-6 sm:py-28 lg:px-8">
-        {/* Eyebrow — centriran, tamna sekcija */}
-        <div className="flex flex-col items-center text-center">
+        <FadeIn className="flex flex-col items-center text-center">
           <div className="flex items-center gap-3">
             <span aria-hidden className="h-px w-5 rounded-full bg-primary/50" />
             <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/45">
@@ -30,10 +31,10 @@ export function ProblemSolution() {
           <p className="mt-4 max-w-xl text-pretty text-base leading-7 text-white/55 sm:text-lg">
             {problemSolution.subtitle}
           </p>
-        </div>
+        </FadeIn>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-2">
-          {/* Problem */}
+        <StaggerGroup className="mt-14 grid gap-6 lg:grid-cols-2">
+          <StaggerItem>
           <div className="rounded-2xl border border-white/8 bg-white/[0.025] p-6 sm:p-8">
             <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/35">
               {problemSolution.problem.label}
@@ -55,8 +56,9 @@ export function ProblemSolution() {
               ))}
             </ul>
           </div>
+          </StaggerItem>
 
-          {/* Rešenje */}
+          <StaggerItem>
           <div className="relative rounded-2xl border border-white/10 bg-white/[0.025] p-6 sm:p-8">
             {/* Tanak amber levi border kao vizuelni akcent */}
             <div aria-hidden className="absolute bottom-0 left-0 top-0 w-[2px] rounded-l-2xl bg-gradient-to-b from-primary/70 via-primary/40 to-transparent" />
@@ -81,7 +83,8 @@ export function ProblemSolution() {
               ))}
             </ul>
           </div>
-        </div>
+          </StaggerItem>
+        </StaggerGroup>
       </div>
     </section>
   );

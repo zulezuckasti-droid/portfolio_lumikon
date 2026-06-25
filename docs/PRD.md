@@ -52,10 +52,29 @@ Poslednje ažuriranje: **25. jun 2026.**
 
 ### Preostalo za MVP
 
-- SEO: `sitemap.xml`, `robots.txt`, structured data (§9)
-- Framer Motion animacije (§8, §10) — opciono, suptilno
 - Blog folder struktura (§5, §11)
 - Resend env u Vercel produkciji + verifikacija domena `lumikon.rs` za `CONTACT_FROM_EMAIL`
+
+### Framer Motion (§8, §10) — urađeno
+
+| Stavka | Status | Fajl |
+| --- | --- | --- |
+| `framer-motion` dependency | ✅ | `package.json` |
+| Dijeljeni tokeni (ease, viewport) | ✅ | `lib/motion.ts` |
+| `FadeIn` — fade + blagi reveal | ✅ | `components/motion/fade-in.tsx` |
+| `StaggerGroup` / `StaggerItem` | ✅ | `components/motion/stagger.tsx` |
+| Hero entrance (mount) | ✅ | početna + O nama + Usluge hero |
+| Scroll reveal sekcije | ✅ | sve sekcije na Home, Usluge, O nama, Kontakt |
+| `prefers-reduced-motion` | ✅ | motion komponente |
+
+### SEO (PRD §9) — urađeno
+
+| Stavka | Status | Fajl |
+| --- | --- | --- |
+| `sitemap.xml` | ✅ | `app/sitemap.ts` |
+| `robots.txt` | ✅ | `app/robots.ts` |
+| JSON-LD (Organization / LocalBusiness) | ✅ | `lib/structured-data.ts`, `components/seo/json-ld.tsx` |
+| WebSite structured data | ✅ | `lib/structured-data.ts` |
 
 ---
 

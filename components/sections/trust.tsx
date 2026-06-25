@@ -1,3 +1,5 @@
+import { FadeIn } from "@/components/motion/fade-in";
+import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { testimonials, trustSection } from "@/content/site";
 
 /**
@@ -19,7 +21,7 @@ export function Trust() {
       </div>
 
       <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-6 sm:py-28 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
+        <FadeIn className="mx-auto max-w-3xl text-center">
           {/* Eyebrow */}
           <div className="flex items-center justify-center gap-3">
             <span aria-hidden className="h-px w-5 rounded-full bg-primary/55" />
@@ -47,13 +49,13 @@ export function Trust() {
               {trustSection.supporting}
             </figcaption>
           </figure>
-        </div>
+        </FadeIn>
 
         {hasTestimonials ? (
-          <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <StaggerGroup className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {testimonials.map((item) => (
+              <StaggerItem key={item.author}>
               <figure
-                key={item.author}
                 className="rounded-2xl border border-border bg-card p-6"
               >
                 <blockquote className="text-sm leading-7 text-muted-foreground">
@@ -67,8 +69,9 @@ export function Trust() {
                   </div>
                 </figcaption>
               </figure>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         ) : null}
       </div>
     </section>

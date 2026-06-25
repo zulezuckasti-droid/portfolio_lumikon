@@ -1,3 +1,5 @@
+import { FadeIn } from "@/components/motion/fade-in";
+import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { aboutPage } from "@/content/site";
 
 /**
@@ -18,7 +20,7 @@ export function AboutStand() {
       </div>
 
       <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-6 sm:py-28 lg:px-8">
-        <div className="flex flex-col items-center text-center">
+        <FadeIn className="flex flex-col items-center text-center">
           <div className="flex items-center gap-3">
             <span aria-hidden className="h-px w-5 rounded-full bg-primary/50" />
             <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/40">
@@ -33,9 +35,10 @@ export function AboutStand() {
           >
             {stand.title}
           </h2>
-        </div>
+        </FadeIn>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-2">
+        <StaggerGroup className="mt-14 grid gap-6 lg:grid-cols-2">
+          <StaggerItem>
           <article className="rounded-2xl border border-white/8 bg-white/[0.025] p-6 sm:p-8">
             <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/35">
               {negative.label}
@@ -50,7 +53,9 @@ export function AboutStand() {
               ))}
             </ul>
           </article>
+          </StaggerItem>
 
+          <StaggerItem>
           <article className="relative rounded-2xl border border-white/10 bg-white/[0.025] p-6 sm:p-8">
             <div
               aria-hidden
@@ -73,7 +78,8 @@ export function AboutStand() {
               ))}
             </ul>
           </article>
-        </div>
+          </StaggerItem>
+        </StaggerGroup>
       </div>
     </section>
   );

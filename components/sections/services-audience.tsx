@@ -1,3 +1,5 @@
+import { FadeIn } from "@/components/motion/fade-in";
+import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { servicesPage } from "@/content/site";
 
 /**
@@ -17,7 +19,7 @@ export function ServicesAudience() {
       </div>
 
       <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-6 sm:py-28 lg:px-8">
-        <div className="flex flex-col items-center text-center">
+        <FadeIn className="flex flex-col items-center text-center">
           <div className="flex items-center gap-3">
             <span aria-hidden className="h-px w-5 rounded-full bg-primary/50" />
             <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/40">
@@ -36,12 +38,12 @@ export function ServicesAudience() {
           <p className="mt-4 max-w-xl text-pretty text-base leading-7 text-white/50">
             {audience.subtitle}
           </p>
-        </div>
+        </FadeIn>
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2">
+        <StaggerGroup className="mt-14 grid gap-4 sm:grid-cols-2">
           {audience.groups.map((group) => (
+            <StaggerItem key={group.title}>
             <article
-              key={group.title}
               className="rounded-2xl border border-white/8 bg-white/[0.025] p-6 sm:p-7"
             >
               <div className="flex items-center gap-3">
@@ -52,8 +54,9 @@ export function ServicesAudience() {
               </div>
               <p className="mt-3 text-sm leading-6 text-white/45">{group.examples}</p>
             </article>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </div>
     </section>
   );

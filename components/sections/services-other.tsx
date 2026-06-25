@@ -1,3 +1,5 @@
+import { FadeIn } from "@/components/motion/fade-in";
+import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { servicesPage } from "@/content/site";
 
 /**
@@ -17,7 +19,7 @@ export function ServicesOther() {
       </div>
 
       <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-6 sm:py-28 lg:px-8">
-        <div className="max-w-2xl">
+        <FadeIn className="max-w-2xl">
           <div className="flex items-center gap-3">
             <span aria-hidden className="h-px w-7 rounded-full bg-primary/65" />
             <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/60">
@@ -35,12 +37,12 @@ export function ServicesOther() {
           <p className="mt-4 text-pretty text-base leading-7 text-muted-foreground">
             {otherServices.subtitle}
           </p>
-        </div>
+        </FadeIn>
 
-        <ol className="mt-14 space-y-5" role="list">
+        <StaggerGroup as="ol" className="mt-14 space-y-5" role="list">
           {otherServices.items.map((service, index) => (
-            <li key={service.title}>
-              <article className="group rounded-2xl border border-border bg-card p-6 transition-colors duration-200 hover:border-border/80 hover:bg-secondary/20 sm:p-8">
+            <StaggerItem as="li" key={service.title}>
+            <article className="group rounded-2xl border border-border bg-card p-6 transition-colors duration-200 hover:border-border/80 hover:bg-secondary/20 sm:p-8">
                 <div className="grid gap-6 lg:grid-cols-[auto_1fr_auto] lg:items-start lg:gap-10">
                   {/* Broj */}
                   <div className="flex items-center gap-3 lg:flex-col lg:items-start lg:gap-2">
@@ -79,9 +81,9 @@ export function ServicesOther() {
                   </ul>
                 </div>
               </article>
-            </li>
+            </StaggerItem>
           ))}
-        </ol>
+        </StaggerGroup>
       </div>
     </section>
   );

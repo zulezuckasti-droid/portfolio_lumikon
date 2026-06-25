@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { FadeIn } from "@/components/motion/fade-in";
+import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { hero, primaryCta, secondaryCta } from "@/content/site";
 
 /**
@@ -21,59 +23,64 @@ export function Hero() {
         <div className="grid items-center gap-14 lg:grid-cols-[1fr_360px] lg:gap-14 xl:grid-cols-[1fr_400px] xl:gap-20">
 
           {/* ── Leva kolona: sadržaj ─────────────────────────────── */}
-          <div className="flex flex-col">
-            {/* Eyebrow — linija + all-caps label */}
-            <div className="flex items-center gap-3">
-              <span aria-hidden className="h-px w-7 rounded-full bg-primary/70" />
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/60">
-                {hero.eyebrow}
+          <StaggerGroup when="mount" className="flex flex-col">
+            <StaggerItem>
+              <div className="flex items-center gap-3">
+                <span aria-hidden className="h-px w-7 rounded-full bg-primary/70" />
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/60">
+                  {hero.eyebrow}
+                </p>
+              </div>
+            </StaggerItem>
+
+            <StaggerItem>
+              <h1 className="mt-6 max-w-lg text-4xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem]">
+                {hero.titleStart}{" "}
+                <span className="text-primary">{hero.titleAccent}</span>
+              </h1>
+            </StaggerItem>
+
+            <StaggerItem>
+              <p className="mt-5 max-w-[420px] text-base leading-[1.75] text-muted-foreground sm:text-[16.5px]">
+                {hero.subtitle}
               </p>
-            </div>
+            </StaggerItem>
 
-            {/* Naslov — "na svetlo." u amber */}
-            <h1 className="mt-6 max-w-lg text-4xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem]">
-              {hero.titleStart}{" "}
-              <span className="text-primary">{hero.titleAccent}</span>
-            </h1>
-
-            {/* Podnaslov */}
-            <p className="mt-5 max-w-[420px] text-base leading-[1.75] text-muted-foreground sm:text-[16.5px]">
-              {hero.subtitle}
-            </p>
-
-            {/* CTA dugmad */}
-            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <Link
-                href={primaryCta.href}
-                className="inline-flex h-11 items-center rounded-xl bg-foreground px-6 text-[13.5px] font-semibold text-background shadow-sm transition-opacity duration-200 hover:opacity-85"
-              >
-                {primaryCta.label}
-              </Link>
-              <Link
-                href={secondaryCta.href}
-                className="group inline-flex items-center gap-2 text-[13.5px] font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground"
-              >
-                {secondaryCta.label}
-                <ArrowRightIcon className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-              </Link>
-            </div>
-
-            {/* Highlights — amber crtica umesto check ikone */}
-            <ul className="mt-7 flex flex-wrap gap-x-5 gap-y-2" role="list">
-              {hero.highlights.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-center gap-2 text-[12.5px] text-muted-foreground/75"
+            <StaggerItem>
+              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+                <Link
+                  href={primaryCta.href}
+                  className="inline-flex h-11 items-center rounded-xl bg-foreground px-6 text-[13.5px] font-semibold text-background shadow-sm transition-opacity duration-200 hover:opacity-85"
                 >
-                  <span aria-hidden className="inline-block h-px w-3.5 rounded-full bg-primary/55" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+                  {primaryCta.label}
+                </Link>
+                <Link
+                  href={secondaryCta.href}
+                  className="group inline-flex items-center gap-2 text-[13.5px] font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground"
+                >
+                  {secondaryCta.label}
+                  <ArrowRightIcon className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+                </Link>
+              </div>
+            </StaggerItem>
+
+            <StaggerItem>
+              <ul className="mt-7 flex flex-wrap gap-x-5 gap-y-2" role="list">
+                {hero.highlights.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-center gap-2 text-[12.5px] text-muted-foreground/75"
+                  >
+                    <span aria-hidden className="inline-block h-px w-3.5 rounded-full bg-primary/55" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </StaggerItem>
+          </StaggerGroup>
 
           {/* ── Desna kolona: dizajn kompozicija ─────────────────── */}
-          <div className="relative pb-3 pr-3 lg:block">
+          <FadeIn when="mount" direction="right" delay={0.12} className="relative pb-3 pr-3 lg:block">
             {/* Dubinski slojevi (bez animacije, čist CSS) */}
             <div
               aria-hidden
@@ -166,7 +173,7 @@ export function Hero() {
                 ))}
               </div>
             </div>
-          </div>
+          </FadeIn>
 
         </div>
       </div>

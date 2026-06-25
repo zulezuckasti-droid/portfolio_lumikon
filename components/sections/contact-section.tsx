@@ -1,4 +1,5 @@
 import { ContactForm } from "@/components/sections/contact-form";
+import { FadeIn } from "@/components/motion/fade-in";
 import { contactSection, site } from "@/content/site";
 
 type ContactSectionProps = {
@@ -27,6 +28,7 @@ export function ContactSection({
 
       <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-6 sm:py-28 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-16">
+          <FadeIn>
           <div>
             <div className="flex items-center gap-3">
               <span aria-hidden className="h-px w-7 rounded-full bg-primary/65" />
@@ -89,10 +91,13 @@ export function ContactSection({
               </p>
             </div>
           </div>
+          </FadeIn>
 
+          <FadeIn direction="right" delay={0.08}>
           <div className="rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8">
             <ContactForm />
           </div>
+          </FadeIn>
         </div>
       </div>
     </section>
