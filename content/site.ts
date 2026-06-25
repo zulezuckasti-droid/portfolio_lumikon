@@ -226,6 +226,146 @@ export type Testimonial = {
 /** Prazno dok ne postoji sadržaj — testimonijali se ne prikazuju (PRD §6.6). */
 export const testimonials: Testimonial[] = [];
 
+/** Stranica Usluge — meta i sadržaj (PRD §4, §5, §8, §9). */
+export const servicesPage = {
+  meta: {
+    title: "Usluge",
+    description:
+      "Izrada modernih veb sajtova, redizajn, landing stranice i održavanje. Premium dizajn, jasan proces i ponuda prilagođena vašem projektu.",
+  },
+  hero: {
+    eyebrow: "Usluge",
+    titleStart: "Sve za snažno prisustvo onlajn —",
+    titleAccent: "od nule do lansiranja.",
+    subtitle:
+      "Izrada sajtova je naša srž. Ostalo radimo po potrebi projekta — bez paketa koje ne koristite i bez nepotrebnog šuma.",
+    highlights: [
+      "Flagship: izrada novih sajtova",
+      "Ponuda po projektu",
+      "Revizije do zadovoljstva",
+    ],
+  },
+  flagship: {
+    label: "Glavna usluga",
+    title: "Izrada novih sajtova",
+    lead: "Pravimo sajtove koji u prvih pet sekundi grade poverenje — brze, responsivne i namerno dizajnirane za vaš biznis.",
+    body: "Ne prodajemo šablone. Svaki projekat krećemo od vaših ciljeva: ko su vam klijenti, šta treba da urade na sajtu i kako da vas sajt predstavi onlajn. Rezultat je ispolirano, moderno izdanje koje radi na svim uređajima i vodi posetioce ka upitu.",
+    deliverablesLabel: "Šta dobijate",
+    deliverables: [
+      {
+        title: "Struktura po vašem biznisu",
+        description: "Stranice i sadržaj organizovani tako da posetilac brzo nađe ono što traži.",
+      },
+      {
+        title: "Premium vizuelni identitet",
+        description: "Tipografija, boje i ritam prilagođeni vašem brendu — ništa generičko.",
+      },
+      {
+        title: "Savršeno na telefonu",
+        description: "Većina upita dolazi sa mobilnog. Sajt je optimizovan za svaki ekran.",
+      },
+      {
+        title: "Brzo učitavanje i SEO osnove",
+        description: "Tehnička higijena koja pomaže da vas pronađu i zadrži pažnju posetilaca.",
+      },
+      {
+        title: "Jasan put ka kontaktu",
+        description: "CTA, forma i struktura koja pretvara posetioce u konkretne upite.",
+      },
+      {
+        title: "Revizije do zadovoljstva",
+        description: "Radimo iteracije dok ne budete sigurni da sajt predstavlja vas kako zaslužujete.",
+      },
+    ],
+    note: "Obim, rok i budžet dogovaramo nakon razgovora — svaki projekat je drugačiji.",
+    cta: {
+      label: "Zatraži ponudu",
+      href: "/kontakt",
+    },
+  },
+  otherServices: {
+    eyebrow: "Ostale usluge",
+    title: "Kada vam treba nešto specifično.",
+    subtitle: "Nisu manje važne — samo imaju drugačiji obim. Detalje i ponudu definišemo zajedno.",
+    items: [
+      {
+        title: "Redizajn / unapređenje postojećih sajtova",
+        when: "Imate sajt, ali ne predstavlja vas ili ne donosi upite.",
+        description:
+          "Osvežavamo vizuelni identitet, popravljamo strukturu i brzinu, i pretvaramo zastarelo izdanje u moderan sajt koji radi za vaš biznis.",
+        points: ["Nova vizuelna prezentacija", "Poboljšana navigacija i CTA", "Optimizacija za mobilne"],
+      },
+      {
+        title: "Landing stranice",
+        when: "Pokrećete kampanju, proizvod ili akciju i treba vam jedna fokusirana stranica.",
+        description:
+          "Jedna stranica, jedan cilj — da posetilac ostavi kontakt ili izvrši akciju. Bez suvišnih elemenata koji odvlače pažnju.",
+        points: ["Jedan jasan CTA", "Brza izrada po dogovoru", "Prilagođeno kampanji"],
+      },
+      {
+        title: "Održavanje i briga o sajtu",
+        when: "Sajt radi, ali ne želite da razmišljate o ažuriranjima, brzini i sigurnosti.",
+        description:
+          "Preuzimamo tehničku brigu — ažuriranja, backup, sitne izmene sadržaja — da vi možete da se bavite poslom.",
+        points: ["Redovna ažuriranja", "Monitoring brzine", "Sitne izmene po potrebi"],
+      },
+    ],
+  },
+  extras: {
+    eyebrow: "Dodatna vrednost",
+    title: "Ugrađeno u projekat, kada zatreba.",
+    subtitle:
+      "Vizuali, tekst i automatizacija nisu zasebni proizvodi koje morate da birate — uklapamo ih u projekat tamo gde imaju smisla.",
+    items: [
+      {
+        title: "Vizuali i grafika",
+        description: "Ilustracije, ikonografija i vizuelni elementi usklađeni sa dizajnom sajta.",
+      },
+      {
+        title: "Copywriting",
+        description: "Tekst koji objašnjava vašu vrednost jasno i ubedljivo — bez praznih fraza.",
+      },
+      {
+        title: "Automatizacija",
+        description: "Manje ručnog posla oko upita, obaveštenja i ponavljajućih zadataka.",
+      },
+    ],
+  },
+  audience: {
+    eyebrow: "Za koga radimo",
+    title: "Male i srednje firme kojima treba ozbiljan sajt.",
+    subtitle: "Radimo širom Srbije — sa biznisima kojima je prvi onlajn utisak presudan.",
+    groups: [
+      {
+        title: "Ugostiteljstvo i lepota",
+        examples: "Restorani, kafići, saloni, teretane, klinike",
+      },
+      {
+        title: "Profesionalne usluge",
+        examples: "Advokati, agencije, majstori, nekretnine",
+      },
+      {
+        title: "Lični brendovi",
+        examples: "Kreatori, konsultanti, freelanceri",
+      },
+      {
+        title: "Startapi i ambiciozne firme",
+        examples: "Timovi koji žele da izgledaju ozbiljno od prvog dana",
+      },
+    ],
+  },
+  cta: {
+    eyebrow: "Sledeći korak",
+    title: "Imate projekat na umu?",
+    subtitle: "Opišite ga u par rečenica — odgovaramo brzo sa jasnim sledećim koracima.",
+    reassurance: "Besplatne revizije do zadovoljstva — cene i rokove dogovaramo individualno.",
+    primary: {
+      label: "Kontaktiraj nas",
+      href: "/kontakt",
+    },
+  },
+} as const;
+
 /** Kontakt stranica — meta (PRD §5, §9). */
 export const contactPage = {
   meta: {
