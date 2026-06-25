@@ -366,6 +366,132 @@ export const servicesPage = {
   },
 } as const;
 
+/** Stranica O nama — meta i sadržaj (PRD §2, §5, §8, §9). */
+export const aboutPage = {
+  meta: {
+    title: "O nama",
+    description:
+      "Lumikon je digitalna agencija iz Srbije — dva osnivača, jedan standard. Premium dizajn, jasan proces i sajtovi koji izvode biznise na svetlo.",
+  },
+  hero: {
+    eyebrow: "O Lumikonu",
+    titleStart: "Nova agencija sa starim pravilom:",
+    titleAccent: "kvalitet pre svega.",
+    subtitle:
+      "Dvoje osnivača, jedan fokus — moderne veb prezentacije za male i srednje biznise koji zaslužuju da izgledaju ozbiljno onlajn.",
+    highlights: [
+      "Brend-first pristup",
+      "Premium izrada",
+      "Cela Srbija",
+    ],
+  },
+  manifesto: {
+    eyebrow: "U šta verujemo",
+    lines: [
+      "Ne prodajemo šablone.",
+      "Ne trkamo se u ceni.",
+      "Pravimo sajtove koji u prvih pet sekundi grade poverenje.",
+    ],
+    closing:
+      "Svaki detalj — tipografija, ritam, brzina — namerno je osmišljen. Ništa nije podrazumevano.",
+  },
+  meaning: {
+    eyebrow: "Značenje imena",
+    title: "Lumikon = svetlost + jasnoća.",
+    lead: "Ime asocira na ono što radimo: izvodimo biznise na svetlo — činimo ih vidljivim, profesionalnim i lako pronađivim onlajn.",
+    parts: [
+      {
+        fragment: "Lumi",
+        gloss: "Svetlost — vidljivost vašeg biznisa tamo gde vas klijenti traže.",
+      },
+      {
+        fragment: "kon",
+        gloss: "Jasnoća — struktura, dizajn i poruka bez šuma i nejasnoća.",
+      },
+    ],
+  },
+  principles: {
+    eyebrow: "Načela",
+    title: "Tri stvari koje ne pregovaramo.",
+    subtitle: "Direktno, jezgrovito — bez korporativnog šuma.",
+    items: [
+      {
+        number: "01",
+        title: "Dizajn je diferencijator",
+        description:
+          "Premium izrada nije luksuz — to je ono što od vas pravi ozbiljan izbor u očima klijenta.",
+      },
+      {
+        number: "02",
+        title: "Proces mora biti jasan",
+        description:
+          "Četiri koraka, transparentna komunikacija. Uvek znate gde ste i šta sledi.",
+      },
+      {
+        number: "03",
+        title: "Radimo dok ne zadovoljimo",
+        description:
+          "Besplatne revizije do zadovoljstva — jer sajt mora da predstavlja vas, ne nas.",
+      },
+    ],
+  },
+  founders: {
+    eyebrow: "Ko stoji iza",
+    title: "Dvoje osnivača. Direktan kontakt.",
+    subtitle:
+      "Bez account menadžera i posrednika — razgovarate sa ljudima koji dizajniraju i pišu kod vašeg sajta.",
+    roles: [
+      {
+        label: "Dizajn & strategija",
+        description:
+          "Vizuelni identitet, struktura stranica i korisničko iskustvo — od prvog mockupa do finalnog izgleda.",
+      },
+      {
+        label: "Razvoj & implementacija",
+        description:
+          "Brz, pouzdan kod, responsivnost i tehnička higijena — sajt koji radi besprekorno na svakom uređaju.",
+      },
+    ],
+    note: "Lica nisu u prvom planu — standard našeg rada jeste. Ovaj sajt je dokaz.",
+  },
+  stand: {
+    eyebrow: "Naš stav",
+    title: "Moderan partner, ne fabrika sajtova.",
+    contrast: [
+      {
+        label: "Ne radimo",
+        items: [
+          "Generičke šablone koje izgledaju kao hiljade drugih",
+          "Obećanja o najnižoj ceni i najbržem roku",
+          "Sajtove bez jasnog puta ka kontaktu",
+        ],
+      },
+      {
+        label: "Radimo",
+        items: [
+          "Namerno dizajnirane sajtove prilagođene vašem biznisu",
+          "Ispoliranu izradu sa pažnjom prema svakom detalju",
+          "Strukturu koja pretvara posetioce u upite",
+        ],
+      },
+    ],
+  },
+  cta: {
+    eyebrow: "Sledeći korak",
+    title: "Hoćete sajt koji radi za vas?",
+    subtitle: "Javite nam se — odgovaramo brzo, sa jasnim sledećim koracima.",
+    reassurance: "Besplatne revizije do zadovoljstva — cene i rokove dogovaramo individualno.",
+    primary: {
+      label: "Kontaktiraj nas",
+      href: "/kontakt",
+    },
+    secondary: {
+      label: "Pogledaj usluge",
+      href: "/usluge",
+    },
+  },
+} as const;
+
 /** Kontakt stranica — meta (PRD §5, §9). */
 export const contactPage = {
   meta: {

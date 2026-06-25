@@ -1,5 +1,6 @@
 "use server";
 
+import { sendContactLead } from "@/lib/send-contact-lead";
 import { contactSection, site } from "@/content/site";
 
 export type ContactFormState = {
@@ -11,7 +12,6 @@ export type ContactFormState = {
     message?: string;
   };
 };
-
 
 export async function submitContactForm(
   _prevState: ContactFormState | null,
@@ -43,52 +43,26 @@ export async function submitContactForm(
     };
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const toEmail = process.env.CONTACT_TO_EMAIL ?? site.email;
-  const fromEmail =
-    process.env.CONTACT_FROM_EMAIL ?? "Lumikon <onboarding@resend.dev>";
+  const result = await sendContactLead({ name, email, message });
 
-  if (!apiKey) {
-    console.error("RESEND_API_KEY nije konfigurisan.");
-    return {
-      success: false,
-      message: `${contactSection.form.unavailableMessage} ${site.email}`,
-    };
-  }
-
-  try {
-    const response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: fromEmail,
-        to: [toEmail],
-        reply_to: email,
-        subject: `Novi upit sa sajta — ${name}`,
-        text: `Ime: ${name}\nEmail: ${email}\n\nPoruka:\n${message}`,
-      }),
-    });
-
-    if (!response.ok) {
-      console.error("Resend API greška:", await response.text());
+  if (!result.ok) {
+    if (result.reason === "missing_api_key") {
+      console.error("RESEND_API_KEY nije konfigurisan.");
       return {
         success: false,
-        message: `${contactSection.form.errorMessage} ${site.email}`,
+        message: `${contactSection.form.unavailableMessage} ${site.email}`,
       };
     }
 
-    return {
-      success: true,
-      message: contactSection.form.successMessage,
-    };
-  } catch (error) {
-    console.error("Greška pri slanju kontakt forme:", error);
+    console.error("Resend API greška:", result.detail);
     return {
       success: false,
       message: `${contactSection.form.errorMessage} ${site.email}`,
     };
   }
+
+  return {
+    success: true,
+    message: contactSection.form.successMessage,
+  };
 }

@@ -23,6 +23,7 @@ Poslednje ažuriranje: **25. jun 2026.**
 | Navbar | ✅ | `components/layout/navbar.tsx` |
 | Footer | ✅ | `components/layout/footer.tsx` |
 | shadcn Button | ✅ | `components/ui/button.tsx`; CTA u Navbar + Hero |
+| Resend env + test leadova | ✅ | `.env.example`, `npm run test:contact` |
 | Početna stranica (osnova) | ✅ | `app/page.tsx` |
 
 ### Sekcije početne (PRD §6)
@@ -35,7 +36,7 @@ Poslednje ažuriranje: **25. jun 2026.**
 | 4. Zašto Lumikon | ✅ | `components/sections/why-lumikon.tsx` |
 | 5. Kako radimo (proces) | ✅ | `components/sections/process.tsx` |
 | 6. Poverenje | ✅ | `components/sections/trust.tsx` |
-| 7. Kontakt / CTA | ✅ | `components/sections/contact-cta.tsx`, `app/actions/contact.ts` |
+| 7. Kontakt / CTA | ✅ | `components/sections/contact-cta.tsx`, `app/actions/contact.ts`, `lib/send-contact-lead.ts` |
 
 **Hero (urađeno):** value-prop naslov, podnaslov, primarni CTA „Kontaktiraj nas", sekundarni „Pogledaj usluge", lista prednosti, suptilni amber gradijenti, CSS mockup sajta (PRD §8).
 
@@ -45,17 +46,16 @@ Poslednje ažuriranje: **25. jun 2026.**
 | --- | --- |
 | Početna (Home) | ✅ | Sve sekcije §6.1–§6.7 |
 | Usluge | ⬜ |
-| O nama | ⬜ |
+| O nama | ✅ | `app/o-nama/page.tsx` |
 | Kontakt | ✅ | `app/kontakt/page.tsx`, `components/sections/contact-section.tsx` |
 | Blog (struktura) | ⬜ |
 
 ### Preostalo za MVP
 
-- Stranice Usluge, O nama
-- Kontakt forma + email notifikacija (§7) — forma ✅; Resend env za produkciju
 - SEO: `sitemap.xml`, `robots.txt`, structured data (§9)
 - Framer Motion animacije (§8, §10) — opciono, suptilno
 - Blog folder struktura (§5, §11)
+- Resend env u Vercel produkciji + verifikacija domena `lumikon.rs` za `CONTACT_FROM_EMAIL`
 
 ---
 
