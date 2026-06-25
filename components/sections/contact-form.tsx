@@ -3,7 +3,6 @@
 import { useActionState } from "react";
 
 import { submitContactForm, type ContactFormState } from "@/app/actions/contact";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -21,10 +20,12 @@ export function ContactForm() {
     return (
       <div
         role="status"
-        className="rounded-2xl border border-primary/30 bg-primary/10 p-6 text-center sm:p-8"
+        className="rounded-2xl border border-border bg-secondary/30 p-6 text-center sm:p-8"
       >
-        <SuccessIcon className="mx-auto h-10 w-10 text-primary" />
-        <p className="mt-4 text-base font-medium text-foreground">
+        <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full border border-primary/30 bg-primary/10">
+          <SuccessIcon className="h-5 w-5 text-primary" />
+        </div>
+        <p className="mt-4 text-[15px] font-medium text-foreground">
           {state.message}
         </p>
       </div>
@@ -36,7 +37,7 @@ export function ContactForm() {
       {state?.message && !state.success ? (
         <p
           role="alert"
-          className="rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive"
+          className="rounded-lg border border-destructive/25 bg-destructive/8 px-4 py-3 text-sm text-destructive"
         >
           {state.message}
         </p>
@@ -53,9 +54,7 @@ export function ContactForm() {
           required
           minLength={2}
           aria-invalid={Boolean(state?.fieldErrors?.name)}
-          aria-describedby={
-            state?.fieldErrors?.name ? "contact-name-error" : undefined
-          }
+          aria-describedby={state?.fieldErrors?.name ? "contact-name-error" : undefined}
           disabled={isPending}
           className="h-11 bg-background"
         />
@@ -76,9 +75,7 @@ export function ContactForm() {
           placeholder={contactSection.form.emailPlaceholder}
           required
           aria-invalid={Boolean(state?.fieldErrors?.email)}
-          aria-describedby={
-            state?.fieldErrors?.email ? "contact-email-error" : undefined
-          }
+          aria-describedby={state?.fieldErrors?.email ? "contact-email-error" : undefined}
           disabled={isPending}
           className="h-11 bg-background"
         />
@@ -90,9 +87,7 @@ export function ContactForm() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="contact-message">
-          {contactSection.form.messageLabel}
-        </Label>
+        <Label htmlFor="contact-message">{contactSection.form.messageLabel}</Label>
         <Textarea
           id="contact-message"
           name="message"
@@ -101,9 +96,7 @@ export function ContactForm() {
           minLength={10}
           rows={5}
           aria-invalid={Boolean(state?.fieldErrors?.message)}
-          aria-describedby={
-            state?.fieldErrors?.message ? "contact-message-error" : undefined
-          }
+          aria-describedby={state?.fieldErrors?.message ? "contact-message-error" : undefined}
           disabled={isPending}
           className="min-h-32 bg-background"
         />
@@ -114,16 +107,14 @@ export function ContactForm() {
         ) : null}
       </div>
 
-      <Button
+      {/* Submit — charcoal, ne narandžast */}
+      <button
         type="submit"
-        size="lg"
-        className="h-12 w-full font-semibold shadow-sm sm:w-auto sm:min-w-40"
         disabled={isPending}
+        className="inline-flex h-11 items-center rounded-xl bg-foreground px-6 text-[13.5px] font-semibold text-background shadow-sm transition-opacity duration-200 hover:opacity-85 disabled:cursor-not-allowed disabled:opacity-50"
       >
-        {isPending
-          ? contactSection.form.submittingLabel
-          : contactSection.form.submitLabel}
-      </Button>
+        {isPending ? contactSection.form.submittingLabel : contactSection.form.submitLabel}
+      </button>
 
       <p className="text-xs text-muted-foreground">
         Ili pišite direktno na{" "}
@@ -145,12 +136,11 @@ function SuccessIcon({ className }: { className?: string }) {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.5"
+      strokeWidth="1.75"
       aria-hidden
       className={className}
     >
-      <circle cx="12" cy="12" r="9" />
-      <path d="M8 12l2.5 2.5L16 9" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M5 12l5 5L19 7" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }

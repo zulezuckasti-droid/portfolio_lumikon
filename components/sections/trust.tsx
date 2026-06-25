@@ -2,7 +2,7 @@ import { testimonials, trustSection } from "@/content/site";
 
 /**
  * Poverenje sekcija početne strane (PRD §6.6, §8):
- * snažna izjava o kvalitetu; testimonijali sakriveni dok nema sadržaja.
+ * editorijalna izjava o kvalitetu; testimonijali sakriveni dok nema sadržaja.
  */
 export function Trust() {
   const hasTestimonials = testimonials.length > 0;
@@ -11,52 +11,60 @@ export function Trust() {
     <section
       id="poverenje"
       className="relative isolate bg-background"
-      aria-labelledby="trust-heading"
+      aria-labelledby="trust-statement"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
-      >
-        <div className="absolute left-[-5%] bottom-0 h-[20rem] w-[28rem] rounded-full bg-[radial-gradient(closest-side,rgba(212,160,23,0.1),transparent)] blur-2xl" />
-        <div className="absolute right-[-10%] top-1/4 h-[18rem] w-[24rem] rounded-full bg-[radial-gradient(closest-side,rgba(245,158,11,0.08),transparent)] blur-2xl" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute left-[-5%] bottom-0 h-[18rem] w-[26rem] rounded-full bg-[radial-gradient(closest-side,rgba(212,160,23,0.07),transparent)] blur-2xl" />
+        <div className="absolute right-[-8%] top-1/4 h-[16rem] w-[22rem] rounded-full bg-[radial-gradient(closest-side,rgba(245,158,11,0.06),transparent)] blur-2xl" />
       </div>
 
-      <div className="mx-auto w-full max-w-6xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
+      <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-6 sm:py-28 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/70 px-4 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
-            {trustSection.eyebrow}
-          </span>
+          {/* Eyebrow */}
+          <div className="flex items-center justify-center gap-3">
+            <span aria-hidden className="h-px w-5 rounded-full bg-primary/55" />
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/60">
+              {trustSection.eyebrow}
+            </p>
+            <span aria-hidden className="h-px w-5 rounded-full bg-primary/55" />
+          </div>
 
+          {/* Amber navodnik + izjava */}
           <figure className="mt-10">
-            <blockquote>
+            <div aria-hidden className="text-5xl font-bold leading-none text-primary/25 select-none">
+              „
+            </div>
+            <blockquote className="-mt-2">
               <p
-                id="trust-heading"
-                className="text-balance text-2xl font-semibold leading-snug tracking-tight text-foreground sm:text-3xl lg:text-4xl"
+                id="trust-statement"
+                className="text-balance text-2xl font-semibold leading-snug tracking-tight text-foreground sm:text-3xl lg:text-[2rem]"
               >
-                „{trustSection.statement}"
+                {trustSection.statement}
               </p>
             </blockquote>
 
-            <figcaption className="mt-6 text-base leading-7 text-muted-foreground sm:text-lg">
+            <figcaption className="mt-6 text-sm leading-7 text-muted-foreground sm:text-base">
               {trustSection.supporting}
             </figcaption>
           </figure>
         </div>
 
         {hasTestimonials ? (
-          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {testimonials.map((item) => (
               <figure
                 key={item.author}
-                className="rounded-2xl border border-border bg-card p-6 shadow-sm"
+                className="rounded-2xl border border-border bg-card p-6"
               >
                 <blockquote className="text-sm leading-7 text-muted-foreground">
                   „{item.quote}"
                 </blockquote>
-                <figcaption className="mt-4">
-                  <p className="font-medium text-foreground">{item.author}</p>
-                  <p className="text-sm text-muted-foreground">{item.role}</p>
+                <figcaption className="mt-5 flex items-center gap-3">
+                  <span aria-hidden className="h-px w-4 rounded-full bg-primary/50" />
+                  <div>
+                    <p className="text-sm font-semibold text-foreground">{item.author}</p>
+                    <p className="text-xs text-muted-foreground">{item.role}</p>
+                  </div>
                 </figcaption>
               </figure>
             ))}

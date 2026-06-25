@@ -1,16 +1,15 @@
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
 import { primaryCta, services, servicesSection } from "@/content/site";
 
 /**
  * Usluge sekcija početne strane (PRD §6.3, §4, §8):
- * kompaktan pregled — flagship istaknut, ostalo „na upit",
- * suptilna dodatna vrednost (vizuali, copywriting, automatizacija).
+ * kompaktan pregled — flagship istaknut levim amber stripe-om,
+ * ostalo na upit, charcoal CTA.
  */
 export function Services() {
-  const flagship = services.find((service) => service.flagship);
-  const compactServices = services.filter((service) => !service.flagship);
+  const flagship = services.find((s) => s.flagship);
+  const compact = services.filter((s) => !s.flagship);
 
   return (
     <section
@@ -18,84 +17,85 @@ export function Services() {
       className="relative isolate bg-background"
       aria-labelledby="services-heading"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
-      >
-        <div className="absolute left-[-10%] top-1/4 h-[22rem] w-[22rem] rounded-full bg-[radial-gradient(closest-side,rgba(245,158,11,0.1),transparent)] blur-2xl" />
-        <div className="absolute right-[-5%] bottom-0 h-[18rem] w-[28rem] rounded-full bg-[radial-gradient(closest-side,rgba(212,160,23,0.08),transparent)] blur-2xl" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute left-[-8%] top-1/4 h-[22rem] w-[22rem] rounded-full bg-[radial-gradient(closest-side,rgba(245,158,11,0.07),transparent)] blur-3xl" />
+        <div className="absolute right-[-5%] bottom-0 h-[18rem] w-[26rem] rounded-full bg-[radial-gradient(closest-side,rgba(212,160,23,0.06),transparent)] blur-2xl" />
       </div>
 
-      <div className="mx-auto w-full max-w-6xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/70 px-4 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
-            {servicesSection.eyebrow}
-          </span>
+      <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-6 sm:py-28 lg:px-8">
+        {/* Header — centriran */}
+        <div className="flex flex-col items-center text-center">
+          <div className="flex items-center gap-3">
+            <span aria-hidden className="h-px w-5 rounded-full bg-primary/55" />
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/60">
+              {servicesSection.eyebrow}
+            </p>
+            <span aria-hidden className="h-px w-5 rounded-full bg-primary/55" />
+          </div>
 
           <h2
             id="services-heading"
-            className="mt-6 text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl"
+            className="mt-6 max-w-2xl text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl"
           >
             {servicesSection.title}
           </h2>
 
-          <p className="mt-4 text-pretty text-lg leading-8 text-muted-foreground">
+          <p className="mt-4 max-w-xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg">
             {servicesSection.subtitle}
           </p>
         </div>
 
-        <div className="mt-16 space-y-6">
+        <div className="mt-14 space-y-5">
+          {/* Flagship kartica — tanak amber levi stripe umesto gradijenta */}
           {flagship ? (
-            <article className="relative overflow-hidden rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-card to-accent/30 p-6 shadow-sm sm:p-8">
+            <article className="relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8">
               <div
                 aria-hidden
-                className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[radial-gradient(closest-side,rgba(245,158,11,0.18),transparent)] blur-xl"
+                className="absolute bottom-0 left-0 top-0 w-[3px] rounded-l-2xl bg-gradient-to-b from-primary/80 via-primary/50 to-transparent"
               />
 
-              <div className="relative flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-                <div className="max-w-2xl">
-                  <span className="inline-flex items-center rounded-full bg-primary/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
+              <div className="relative pl-4 sm:pl-5">
+                <div className="flex items-center gap-2.5">
+                  <span aria-hidden className="h-px w-4 rounded-full bg-primary/65" />
+                  <p className="text-[10.5px] font-semibold uppercase tracking-[0.13em] text-primary/80">
                     {servicesSection.flagshipLabel}
-                  </span>
-
-                  <h3 className="mt-4 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-                    {flagship.title}
-                  </h3>
-
-                  <p className="mt-3 text-base leading-7 text-muted-foreground sm:text-lg">
-                    {flagship.description}
                   </p>
                 </div>
 
-                <div className="hidden shrink-0 lg:block">
-                  <FlagshipMockup />
-                </div>
-              </div>
+                <h3 className="mt-4 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+                  {flagship.title}
+                </h3>
 
-              <div className="relative mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                <p className="text-sm text-muted-foreground">
-                  {servicesSection.onRequestLabel} — prilagođavamo obim i budžet vašem projektu.
+                <p className="mt-3 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
+                  {flagship.description}
                 </p>
 
-                <Button asChild className="shrink-0 font-semibold shadow-sm">
-                  <Link href={servicesSection.cta.href}>
+                <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <p className="text-sm text-muted-foreground/70">
+                    {servicesSection.onRequestLabel} — prilagođavamo obim i budžet vašem projektu.
+                  </p>
+
+                  <Link
+                    href={servicesSection.cta.href}
+                    className="inline-flex h-10 shrink-0 items-center rounded-lg bg-foreground px-5 text-[13px] font-semibold text-background transition-opacity duration-200 hover:opacity-85"
+                  >
                     {servicesSection.cta.label}
                   </Link>
-                </Button>
+                </div>
               </div>
             </article>
           ) : null}
 
+          {/* Kompaktne usluge */}
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {compactServices.map((service) => (
+            {compact.map((service) => (
               <article
                 key={service.title}
-                className="flex flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-colors hover:border-primary/20 hover:bg-secondary/30"
+                className="flex flex-col rounded-2xl border border-border bg-card p-6 transition-colors duration-200 hover:border-border/80 hover:bg-secondary/20"
               >
-                <ServiceIcon className="h-9 w-9 text-primary" />
+                <span aria-hidden className="h-px w-6 rounded-full bg-primary/50" />
 
-                <h3 className="mt-4 text-lg font-semibold tracking-tight text-foreground">
+                <h3 className="mt-5 text-[15px] font-semibold tracking-tight text-foreground">
                   {service.title}
                 </h3>
 
@@ -103,7 +103,7 @@ export function Services() {
                   {service.description}
                 </p>
 
-                <p className="mt-4 text-xs font-medium uppercase tracking-wider text-muted-foreground/80">
+                <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-foreground/50">
                   {servicesSection.onRequestLabel}
                 </p>
               </article>
@@ -111,58 +111,36 @@ export function Services() {
           </div>
         </div>
 
-        <p className="mx-auto mt-10 max-w-3xl text-center text-sm leading-6 text-muted-foreground">
+        <p className="mx-auto mt-9 max-w-2xl text-center text-sm leading-6 text-muted-foreground/70">
           {servicesSection.extras.description}
         </p>
 
-        <div className="mt-10 flex justify-center">
-          <Button asChild variant="outline" size="lg" className="h-12 px-7 font-semibold">
-            <Link href={primaryCta.href}>{primaryCta.label}</Link>
-          </Button>
+        {/* Footer CTA — text link sa strelicom */}
+        <div className="mt-8 flex justify-center">
+          <Link
+            href={primaryCta.href}
+            className="group inline-flex items-center gap-2 text-[13.5px] font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground"
+          >
+            {primaryCta.label}
+            <ArrowRightIcon className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+          </Link>
         </div>
       </div>
     </section>
   );
 }
 
-function FlagshipMockup() {
-  return (
-    <div className="w-56 overflow-hidden rounded-xl border border-border/80 bg-card shadow-lg shadow-black/5">
-      <div className="flex items-center gap-1.5 border-b border-border bg-secondary/60 px-3 py-2">
-        <span className="h-2 w-2 rounded-full bg-destructive/70" aria-hidden />
-        <span className="h-2 w-2 rounded-full bg-primary/80" aria-hidden />
-        <span className="h-2 w-2 rounded-full bg-muted-foreground/40" aria-hidden />
-      </div>
-
-      <div className="space-y-3 p-4">
-        <div className="h-4 w-4/5 rounded bg-gradient-to-r from-primary/70 to-brand-gold/60" />
-        <div className="h-2.5 w-full rounded bg-muted" />
-        <div className="h-2.5 w-5/6 rounded bg-muted" />
-        <div className="mt-3 grid grid-cols-3 gap-2">
-          {[0, 1, 2].map((i) => (
-            <div key={i} className="rounded-md border border-border bg-secondary/50 p-2">
-              <div className="h-3 w-3 rounded bg-primary/80" />
-              <div className="mt-2 h-1.5 w-full rounded bg-muted" />
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ServiceIcon({ className }: { className?: string }) {
+function ArrowRightIcon({ className }: { className?: string }) {
   return (
     <svg
-      viewBox="0 0 24 24"
+      viewBox="0 0 16 16"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.5"
+      strokeWidth="1.75"
       aria-hidden
       className={className}
     >
-      <rect x="3" y="4" width="18" height="16" rx="2" />
-      <path d="M3 9h18M8 4V2M16 4V2" strokeLinecap="round" />
+      <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }

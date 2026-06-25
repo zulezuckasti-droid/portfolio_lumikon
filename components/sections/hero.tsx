@@ -1,128 +1,190 @@
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
 import { hero, primaryCta, secondaryCta } from "@/content/site";
 
 /**
  * Hero sekcija početne strane (PRD §6.1, §8):
- * snažan value-prop naslov + primarni CTA, svetla tema, amber akcenat,
- * suptilni gradijenti i mockup sajta (bez stock fotki).
+ * Editorijalni 2-koloni layout — tekst levo, dizajn kompozicija desno.
+ * Naslov levo-poravnat, "na svetlo." u amber boji kao brend akcenat.
+ * CTA dugmad: primarni tamni charcoal, sekundarni text-link sa strelicom.
  */
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden">
-      {/* Suptilni amber/zlatni gradijent glow (PRD §8) */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10"
-      >
-        <div className="absolute left-1/2 top-[-10%] h-[28rem] w-[42rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(245,158,11,0.18),transparent)] blur-2xl" />
-        <div className="absolute right-[-10%] top-1/3 h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(closest-side,rgba(212,160,23,0.14),transparent)] blur-2xl" />
+    <section className="relative isolate overflow-hidden bg-background">
+      {/* Topli ambient glow — suptilniji od prethodnog */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute right-[8%] top-[-8%] h-[30rem] w-[26rem] rounded-full bg-[radial-gradient(closest-side,rgba(245,158,11,0.09),transparent)] blur-3xl" />
+        <div className="absolute left-[-8%] bottom-[-5%] h-[22rem] w-[22rem] rounded-full bg-[radial-gradient(closest-side,rgba(212,160,23,0.06),transparent)] blur-2xl" />
       </div>
 
-      <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-4 py-24 text-center sm:px-6 sm:py-32 lg:px-8">
-        <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/70 px-4 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur">
-          <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
-          {hero.eyebrow}
-        </span>
+      <div className="mx-auto w-full max-w-6xl px-5 pb-20 pt-14 sm:px-6 sm:pb-24 sm:pt-16 lg:px-8 lg:pb-28 lg:pt-20">
+        <div className="grid items-center gap-14 lg:grid-cols-[1fr_360px] lg:gap-14 xl:grid-cols-[1fr_400px] xl:gap-20">
 
-        <h1 className="mt-8 max-w-3xl text-balance text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-          {hero.title}
-        </h1>
+          {/* ── Leva kolona: sadržaj ─────────────────────────────── */}
+          <div className="flex flex-col">
+            {/* Eyebrow — linija + all-caps label */}
+            <div className="flex items-center gap-3">
+              <span aria-hidden className="h-px w-7 rounded-full bg-primary/70" />
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/60">
+                {hero.eyebrow}
+              </p>
+            </div>
 
-        <p className="mt-6 max-w-xl text-pretty text-lg leading-8 text-muted-foreground">
-          {hero.subtitle}
-        </p>
+            {/* Naslov — "na svetlo." u amber */}
+            <h1 className="mt-6 max-w-lg text-4xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem]">
+              {hero.titleStart}{" "}
+              <span className="text-primary">{hero.titleAccent}</span>
+            </h1>
 
-        <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
-          <Button asChild size="lg" className="h-12 px-7 font-semibold shadow-sm">
-            <Link href={primaryCta.href}>{primaryCta.label}</Link>
-          </Button>
-          <Button asChild variant="outline" size="lg" className="h-12 px-7 font-semibold">
-            <Link href={secondaryCta.href}>{secondaryCta.label}</Link>
-          </Button>
-        </div>
+            {/* Podnaslov */}
+            <p className="mt-5 max-w-[420px] text-base leading-[1.75] text-muted-foreground sm:text-[16.5px]">
+              {hero.subtitle}
+            </p>
 
-        <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-          {hero.highlights.map((item) => (
-            <li key={item} className="inline-flex items-center gap-2">
-              <CheckIcon className="h-4 w-4 text-primary" />
-              {item}
-            </li>
-          ))}
-        </ul>
+            {/* CTA dugmad */}
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <Link
+                href={primaryCta.href}
+                className="inline-flex h-11 items-center rounded-xl bg-foreground px-6 text-[13.5px] font-semibold text-background shadow-sm transition-opacity duration-200 hover:opacity-85"
+              >
+                {primaryCta.label}
+              </Link>
+              <Link
+                href={secondaryCta.href}
+                className="group inline-flex items-center gap-2 text-[13.5px] font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground"
+              >
+                {secondaryCta.label}
+                <ArrowRightIcon className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+              </Link>
+            </div>
 
-        {/* Mockup sajta — čist CSS browser prozor (PRD §8: mockup + gradijenti) */}
-        <div className="mt-16 w-full max-w-4xl">
-          <BrowserMockup />
+            {/* Highlights — amber crtica umesto check ikone */}
+            <ul className="mt-7 flex flex-wrap gap-x-5 gap-y-2" role="list">
+              {hero.highlights.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-center gap-2 text-[12.5px] text-muted-foreground/75"
+                >
+                  <span aria-hidden className="inline-block h-px w-3.5 rounded-full bg-primary/55" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* ── Desna kolona: dizajn kompozicija ─────────────────── */}
+          <div className="relative pb-3 pr-3 lg:block">
+            {/* Dubinski slojevi (bez animacije, čist CSS) */}
+            <div
+              aria-hidden
+              className="absolute inset-0 translate-x-3 translate-y-3 rounded-2xl border border-border/40 bg-card/30"
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0 translate-x-[6px] translate-y-[6px] rounded-2xl border border-border/60 bg-card/60"
+            />
+
+            {/* Glavni kartični okvir */}
+            <div className="relative overflow-hidden rounded-2xl border border-border bg-card shadow-xl shadow-black/[0.07]">
+
+              {/* Simulacija navigacije */}
+              <div className="flex items-center justify-between border-b border-border/60 bg-secondary/40 px-4 py-3">
+                <div className="flex items-baseline gap-1">
+                  <span className="text-[11px] font-semibold tracking-tight text-foreground/90">
+                    Lumikon
+                  </span>
+                  <span
+                    aria-hidden
+                    className="mb-px h-[4px] w-[4px] translate-y-[-2px] rounded-full bg-primary"
+                  />
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-[10px] text-muted-foreground/55">Usluge</span>
+                  <span className="text-[10px] text-muted-foreground/55">O nama</span>
+                  <div className="rounded-md bg-foreground/90 px-2 py-0.5">
+                    <span className="text-[9px] font-semibold leading-none text-background/90">
+                      Kontakt
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Hero sadržaj unutar kartice */}
+              <div className="px-5 pb-4 pt-5">
+                <p className="mb-2.5 text-[8.5px] font-semibold uppercase tracking-[0.13em] text-primary/75">
+                  Digitalna agencija · Srbija
+                </p>
+                <p className="text-[16px] font-semibold leading-[1.3] tracking-tight text-foreground">
+                  Moderni veb sajtovi
+                </p>
+                <p className="text-[16px] font-semibold leading-[1.3] tracking-tight text-foreground">
+                  koji donose upite.
+                </p>
+                {/* Amber separator linija */}
+                <div className="my-3 h-px w-8 rounded-full bg-primary/45" />
+                {/* Apstraktni tekst redovi */}
+                <div className="space-y-[5px]">
+                  <div className="h-[5px] w-full rounded-sm bg-muted/65" />
+                  <div className="h-[5px] w-[82%] rounded-sm bg-muted/65" />
+                </div>
+                {/* Mini CTA */}
+                <div className="mt-4 flex items-center gap-2">
+                  <div className="rounded-lg bg-foreground px-3 py-[7px]">
+                    <span className="text-[9.5px] font-semibold leading-none text-background">
+                      Kontaktiraj nas
+                    </span>
+                  </div>
+                  <div className="rounded-lg border border-border px-3 py-[7px]">
+                    <span className="text-[9.5px] font-medium leading-none text-muted-foreground/70">
+                      Pogledaj usluge
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Separator */}
+              <div className="mx-5 border-t border-border/50" />
+
+              {/* Mini grid usluga — amber dot samo za flagship */}
+              <div className="grid grid-cols-3 gap-2 bg-secondary/20 p-4">
+                {[
+                  { label: "Izrada sajtova", flagship: true },
+                  { label: "Redizajn", flagship: false },
+                  { label: "Landing strane", flagship: false },
+                ].map(({ label, flagship }) => (
+                  <div
+                    key={label}
+                    className="rounded-xl border border-border/60 bg-background/90 px-2.5 py-3"
+                  >
+                    <div
+                      className={`h-1.5 w-1.5 rounded-full ${flagship ? "bg-primary" : "bg-muted-foreground/20"}`}
+                    />
+                    <p className="mt-2.5 text-[8.5px] font-semibold leading-tight text-foreground/65">
+                      {label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
   );
 }
 
-function BrowserMockup() {
-  return (
-    <div className="overflow-hidden rounded-xl border border-border bg-card shadow-xl shadow-black/5">
-      {/* Traka prozora */}
-      <div className="flex items-center gap-2 border-b border-border bg-secondary/60 px-4 py-3">
-        <span className="h-3 w-3 rounded-full bg-destructive/70" aria-hidden />
-        <span className="h-3 w-3 rounded-full bg-primary/80" aria-hidden />
-        <span className="h-3 w-3 rounded-full bg-muted-foreground/40" aria-hidden />
-        <span className="ml-3 hidden flex-1 rounded-md bg-background/80 px-3 py-1 text-left text-xs text-muted-foreground sm:block">
-          lumikon.rs
-        </span>
-      </div>
-
-      {/* Sadržaj — apstraktan layout sajta */}
-      <div className="grid gap-6 p-6 sm:grid-cols-5 sm:p-8">
-        <div className="flex flex-col gap-4 text-left sm:col-span-3">
-          <div className="h-7 w-3/4 rounded-md bg-gradient-to-r from-primary/70 to-brand-gold/60" />
-          <div className="h-4 w-full rounded bg-muted" />
-          <div className="h-4 w-5/6 rounded bg-muted" />
-          <div className="mt-2 flex gap-3">
-            <div className="h-9 w-28 rounded-lg bg-primary/90" />
-            <div className="h-9 w-28 rounded-lg border border-border bg-background" />
-          </div>
-        </div>
-        <div className="relative hidden sm:col-span-2 sm:block">
-          <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-primary/15 via-accent to-background" />
-          <div className="absolute bottom-4 left-4 right-4 space-y-2">
-            <div className="h-3 w-2/3 rounded bg-background/70" />
-            <div className="h-3 w-1/2 rounded bg-background/60" />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-3 gap-4 sm:col-span-5">
-          {[0, 1, 2].map((i) => (
-            <div
-              key={i}
-              className="rounded-lg border border-border bg-secondary/40 p-4"
-            >
-              <div className="h-6 w-6 rounded-md bg-primary/80" />
-              <div className="mt-3 h-3 w-3/4 rounded bg-muted" />
-              <div className="mt-2 h-3 w-1/2 rounded bg-muted" />
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function CheckIcon({ className }: { className?: string }) {
+function ArrowRightIcon({ className }: { className?: string }) {
   return (
     <svg
-      viewBox="0 0 20 20"
-      fill="currentColor"
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
       aria-hidden
       className={className}
     >
-      <path
-        fillRule="evenodd"
-        d="M16.704 5.29a1 1 0 0 1 .006 1.414l-7.2 7.3a1 1 0 0 1-1.42.005l-3.5-3.5a1 1 0 1 1 1.414-1.414l2.79 2.79 6.494-6.59a1 1 0 0 1 1.416-.006Z"
-        clipRule="evenodd"
-      />
+      <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }

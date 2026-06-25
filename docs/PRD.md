@@ -9,7 +9,7 @@
 
 ## 0. Status implementacije
 
-Poslednje ažuriranje: **24. jun 2026.**
+Poslednje ažuriranje: **25. jun 2026.**
 
 ### Temelj projekta — urađeno
 
@@ -46,12 +46,12 @@ Poslednje ažuriranje: **24. jun 2026.**
 | Početna (Home) | ✅ | Sve sekcije §6.1–§6.7 |
 | Usluge | ⬜ |
 | O nama | ⬜ |
-| Kontakt | ⬜ |
+| Kontakt | ✅ | `app/kontakt/page.tsx`, `components/sections/contact-section.tsx` |
 | Blog (struktura) | ⬜ |
 
 ### Preostalo za MVP
 
-- Stranice Usluge, O nama, Kontakt
+- Stranice Usluge, O nama
 - Kontakt forma + email notifikacija (§7) — forma ✅; Resend env za produkciju
 - SEO: `sitemap.xml`, `robots.txt`, structured data (§9)
 - Framer Motion animacije (§8, §10) — opciono, suptilno
@@ -149,12 +149,172 @@ Redosled (problem → rešenje pristup):
 
 ## 8. Dizajn pravac
 
-- **Stil:** moderno, šareno, sa suptilnim gradijentima; čisto i prostrano.
-- **Tema:** primarno **svetla** tema.
-- **Glavni akcenat:** **amber / zlatna** (toplo, premium, „svetlost") — vezano za značenje imena.
-- **Tipografija:** moderan geometrijski sans (čisto, neutralno; jaki naslovi).
-- **Vizuali:** kombinacija **mockup-a sajtova** (laptop/telefon) i suptilnih gradijenata; bez jeftinih stock fotki.
-- **Animacije:** suptilne i ukusne (fade, blagi reveal na scroll) — Framer Motion samo gde dodaje vrednost.
+- **Stil:** moderno, toplo, sa suptilnim gradijentima; čisto i prostrano. Editorijalno, ne korporativno.
+- **Tema:** primarno **svetla** tema (`#fafaf9` ivory).
+- **Diferencijator:** premium izrada — svaki detalj je namerno osmišljen, ništa nije default template.
+- **Animacije:** suptilne (fade, blagi reveal na scroll) — Framer Motion samo gde dodaje vrednost, ne svi elementi.
+
+### §8.1 Style System — Obavezujući dizajn jezik
+
+Sve sekcije i stranice **moraju** slediti ovaj sistem radi koherentnosti. Ovo nije suggestion list — ovo je dizajn konstitucija.
+
+---
+
+#### Boje i upotreba
+
+| Token | Vrednost | Upotreba |
+| --- | --- | --- |
+| `--background` | `#fafaf9` (topla ivory) | Osnovna svetla pozadina |
+| `--foreground` | `#1c1917` (ugljen/charcoal) | Primarni tekst, dugmad |
+| `--ink` | `#0c0a09` (near-black) | Tamne kontrastne sekcije |
+| `--primary` | `#f59e0b` (amber) | **Samo kao akcenat** — videti pravila ispod |
+| `--muted-foreground` | `#78716c` | Sekundarni tekst, labele |
+| `--border` | `#e7e5e4` | Granice kartica i elemenata |
+
+**Pravila za amber/zlatnu:**
+- ✅ Eyebrow linija (`h-px w-7 bg-primary/65`)
+- ✅ Akcenatska reč u naslovu (`<span class="text-primary">na svetlo.</span>`)
+- ✅ Amber tačka u logotipu
+- ✅ Amber dash u listama (`h-px w-3.5 bg-primary/55`)
+- ✅ Tanak levi border stripe na flagship kartici (`w-[3px] bg-gradient-to-b from-primary/80`)
+- ✅ Broj koraka u procesu (`text-primary`)
+- ✅ Separator linija (`h-px w-8 bg-primary/45`)
+- ❌ **NIKAD** kao pozadina dugmeta (`bg-primary` za button je zabranjeno)
+- ❌ **NIKAD** kao background kartica ili sekcija
+- ❌ **NIKAD** orange gradient (`from-primary/10 via-card`) na karticama
+
+---
+
+#### Dugmad (CTA)
+
+**Primarni CTA** — charcoal button:
+```
+inline-flex h-11 items-center rounded-xl bg-foreground px-6
+text-[13.5px] font-semibold text-background shadow-sm
+transition-opacity duration-200 hover:opacity-85
+```
+
+**Sekundarni CTA** — text link sa strelicom:
+```
+group inline-flex items-center gap-2 text-[13.5px] font-medium
+text-muted-foreground transition-colors duration-200 hover:text-foreground
+```
++ `<ArrowRightIcon class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />`
+
+**Submit dugme u formi** — isti pattern kao primarni CTA, ali `<button>` element.
+
+**Zabranjeno:** `<Button>` sa default `bg-primary` variantom za bilo koji vidljivi CTA.
+
+---
+
+#### Eyebrow labele
+
+Svaka sekcija ima eyebrow label. Postoje dva varijanta:
+
+**Levo poravnato** (asimetrični layout, npr. Hero, Kontakt):
+```
+<div class="flex items-center gap-3">
+  <span aria-hidden class="h-px w-7 rounded-full bg-primary/65" />
+  <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/60">
+    Naziv sekcije
+  </p>
+</div>
+```
+
+**Centriran** (simetrični layout, npr. Usluge, Zašto Lumikon, Proces):
+```
+<div class="flex items-center justify-center gap-3">
+  <span aria-hidden class="h-px w-5 rounded-full bg-primary/55" />
+  <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/60">
+    Naziv sekcije
+  </p>
+  <span aria-hidden class="h-px w-5 rounded-full bg-primary/55" />
+</div>
+```
+
+**Na tamnoj (ink) pozadini** — isti pattern, ali:
+- Amber linije: `bg-primary/50`
+- Tekst: `text-white/40` (svetla) ili `text-white/45` (tamna)
+
+**Zabranjeno:** pill badge eyebrow (`rounded-full border bg-secondary px-4 py-1.5`)
+
+---
+
+#### Tipografija
+
+| Element | Klase |
+| --- | --- |
+| H1 (hero) | `text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-semibold tracking-tight leading-[1.1]` |
+| H2 (sekcija) | `text-3xl sm:text-4xl font-semibold tracking-tight text-balance` |
+| H3 (kartica) | `text-[15px] sm:text-[17px] font-semibold tracking-tight` |
+| Podnaslov | `text-base sm:text-lg leading-7 text-muted-foreground` (svetla) / `text-white/50` (tamna) |
+| Body tekst | `text-sm leading-6 text-muted-foreground` |
+| Uppercase labela | `text-[11px] font-semibold uppercase tracking-[0.14em]` |
+
+---
+
+#### Ritam sekcija (svetlo/tamno naizmenično)
+
+```
+Hero            → svetla (bg-background)
+Problem/Rešenje → tamna  (bg-ink)
+Usluge          → svetla (bg-background)
+Zašto Lumikon   → blago siva (bg-secondary/25)
+Proces          → tamna  (bg-ink)
+Poverenje       → svetla (bg-background)
+Kontakt         → blago siva (bg-secondary/20)
+```
+
+Tamne sekcije koristimo **uvek bg-ink** (ne `bg-gray-900` ili sl.). Svetle sekcije naizmenično koriste čistu `bg-background` ili `bg-secondary/20-25` za vizuelnu razdvojenost bez oštrih prelaza.
+
+---
+
+#### Kartice
+
+**Standardna kartica:**
+```
+rounded-2xl border border-border bg-card p-6
+```
+
+**Flagship/istaknut element** (bez gradijenta):
+```
+relative rounded-2xl border border-border bg-card p-6 shadow-sm
++ <div class="absolute bottom-0 left-0 top-0 w-[3px] rounded-l-2xl
+     bg-gradient-to-b from-primary/80 via-primary/50 to-transparent" />
+```
+
+Hover na karticama: `transition-colors duration-200 hover:border-border/80 hover:bg-secondary/20`
+
+---
+
+#### Padding i spacing
+
+| Breakpoint | Padding X | Padding Y (sekcija) |
+| --- | --- | --- |
+| Mobile | `px-5` | `py-20` |
+| Tablet | `sm:px-6` | `sm:py-28` |
+| Desktop | `lg:px-8` | — |
+
+`max-w-6xl` je standardna širina sadržaja za sve sekcije.
+
+---
+
+#### Glow efekti (ambient)
+
+Koristiti suptilno, **max opacity: 0.12 na svetlim sekcijama, max 0.10 na tamnim**:
+```
+bg-[radial-gradient(closest-side,rgba(245,158,11,0.08),transparent)] blur-3xl
+```
+Nikada ne koristiti `blur-xl` glow kao dominantni dizajn element — samo kao pozadinska ambijentalnost.
+
+---
+
+#### Navigacija
+
+- Logo: wordmark + amber tačka (`h-[5px] w-[5px] rounded-full bg-primary`, `scale-125` na hover)
+- Nav linkovi: amber underline na hover (`h-px w-0 → w-full bg-primary/60 transition-[width]`)
+- CTA: charcoal `bg-foreground text-background h-9 rounded-lg px-5 hover:opacity-85`
+- Sticky, backdrop-blur, `border-b border-border/50`
 
 ### Predlog tokena (za potvrdu)
 
@@ -208,7 +368,7 @@ app/
   globals.css             ✅ dizajn tokeni
   usluge/page.tsx         ⬜
   o-nama/page.tsx         ⬜
-  kontakt/page.tsx        ⬜
+  kontakt/page.tsx        ✅
   (blog)/                 ⬜ struktura spremna, prazno
 components/
   ui/                     ✅ button.tsx (shadcn)

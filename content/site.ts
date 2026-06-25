@@ -91,7 +91,9 @@ export const problemSolution = {
 /** Hero sekcija početne strane (PRD §6.1, §8). */
 export const hero = {
   eyebrow: "Digitalna agencija · Srbija",
-  title: "Moderni veb sajtovi koji izvode vaš biznis na svetlo.",
+  /** Naslov se deli u dve celine: osnova + akcenat (amber) koji nosi značenje brenda. */
+  titleStart: "Moderni veb sajtovi koji izvode vaš biznis",
+  titleAccent: "na svetlo.",
   subtitle:
     "Pravimo ispolirane, brze sajtove koji u prvih pet sekundi grade poverenje i pretvaraju posetioce u upite.",
   highlights: [
@@ -224,6 +226,15 @@ export type Testimonial = {
 /** Prazno dok ne postoji sadržaj — testimonijali se ne prikazuju (PRD §6.6). */
 export const testimonials: Testimonial[] = [];
 
+/** Kontakt stranica — meta (PRD §5, §9). */
+export const contactPage = {
+  meta: {
+    title: "Kontakt",
+    description:
+      "Pošaljite upit za izradu ili redizajn veb sajta. Odgovaramo brzo sa jasnim sledećim koracima i besplatnim revizijama do zadovoljstva.",
+  },
+} as const;
+
 /** Kontakt / CTA sekcija početne strane (PRD §6.7, §7). */
 export const contactSection = {
   eyebrow: "Kontakt",
@@ -231,6 +242,8 @@ export const contactSection = {
   subtitle:
     "Opišite projekat u par rečenica — odgovaramo brzo sa jasnim sledećim koracima.",
   reassurance: "Besplatne revizije do zadovoljstva — bez skrivenih uslova.",
+  pricingNote:
+    "Cene i rokove dogovaramo individualno — svaki projekat je drugačiji.",
   form: {
     nameLabel: "Ime",
     namePlaceholder: "Vaše ime",
