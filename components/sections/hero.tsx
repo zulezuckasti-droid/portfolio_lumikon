@@ -79,8 +79,8 @@ export function Hero() {
             </StaggerItem>
           </StaggerGroup>
 
-          {/* ── Desna kolona: dizajn kompozicija ─────────────────── */}
-          <FadeIn when="mount" direction="right" delay={0.12} className="relative pb-3 pr-3 lg:block">
+          {/* ── Desna kolona: dizajn kompozicija (skrivena na mobilnom) ── */}
+          <FadeIn when="mount" direction="right" delay={0.12} className="relative hidden pb-3 pr-3 lg:block">
             {/* Dubinski slojevi (bez animacije, čist CSS) */}
             <div
               aria-hidden

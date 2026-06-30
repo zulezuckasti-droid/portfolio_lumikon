@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { MobileMenu } from "@/components/layout/mobile-menu";
 import { navLinks, primaryCta, site } from "@/content/site";
 
 export function Navbar() {
@@ -39,13 +40,16 @@ export function Navbar() {
           ))}
         </ul>
 
-        {/* CTA — tamni charcoal dugme, ne amber */}
-        <Link
-          href={primaryCta.href}
-          className="inline-flex h-9 items-center rounded-lg bg-foreground px-4 text-[13px] font-semibold text-background transition-opacity duration-200 hover:opacity-85 sm:px-5"
-        >
-          {primaryCta.label}
-        </Link>
+        {/* Desna strana — CTA uvek vidljiv, hamburger samo na mobilnom */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          <Link
+            href={primaryCta.href}
+            className="inline-flex h-9 items-center rounded-lg bg-foreground px-4 text-[13px] font-semibold text-background transition-opacity duration-200 hover:opacity-85 sm:px-5"
+          >
+            {primaryCta.label}
+          </Link>
+          <MobileMenu />
+        </div>
       </nav>
     </header>
   );

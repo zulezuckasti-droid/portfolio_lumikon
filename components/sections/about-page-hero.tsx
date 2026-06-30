@@ -77,7 +77,7 @@ export function AboutPageHero() {
             </StaggerItem>
           </StaggerGroup>
 
-          <FadeIn when="mount" direction="right" delay={0.12} className="relative mx-auto w-full max-w-[320px] lg:max-w-none" aria-hidden>
+          <FadeIn when="mount" direction="right" delay={0.12} className="relative mx-auto hidden w-full max-w-[320px] lg:block lg:max-w-none" aria-hidden>
             <div className="absolute inset-0 translate-x-2 translate-y-2 rounded-2xl border border-border/35 bg-card/20" />
             <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-8 shadow-sm">
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(245,158,11,0.12),transparent_55%)]" />
